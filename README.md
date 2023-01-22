@@ -1,6 +1,6 @@
-# Wetter-App #<br>
+# Wetter-App<br>
 
-## ODE -Projekt “Wetter App” ##<br>
+## ODE -Projekt “Wetter App”<br>
 
 **Must Have**<br>
   • Wetterdaten werden in der GUI angezeigt.<br>
