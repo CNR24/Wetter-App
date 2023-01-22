@@ -1,7 +1,7 @@
-## Wetter-App
+# Wetter-App
 <br><br>
-**ODE -Projekt “Wetter App” 
-<br>
+## ODE -Projekt “Wetter App” 
+<br><br>
 Must Have <br>
   • Wetterdaten werden in der GUI angezeigt.<br>
   • Die Wetterdaten gehen über den Server zum Client<br>
