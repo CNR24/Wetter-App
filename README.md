@@ -12,4 +12,4 @@
   • Popup Werbung Werbung<br>
 **Overkill**<br>
   • Live Daten für das Wetter anzeigen<br>
-  ![This is an image](https://www.vectorstock.com/royalty-free-vector/autumn-weather-glyph-icons-set-vector-28427615)
+
