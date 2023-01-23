@@ -1,0 +1,2 @@
+London 6 ,
+Vienna 10°C, Paris 7°C, London 6°C, Madrid 12°C
