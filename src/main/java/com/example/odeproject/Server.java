@@ -14,7 +14,7 @@ public class Server {
             Socket client = server.accept();
 
             //Reading the Weather Data
-            File file= new File("/home/overlord/Documents/FH/ODE/ODE-Project/src/main/java/weather.txt");
+            File file= new File("C:\\Users\\cnryl\\Fh_technikum\\ODE\\Wetter-App\\src\\main\\java\\weather.txt");
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st;
 
