@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WeatherController {
-    @FXML
+     @FXML
     private Label welcomeText;
 
     @FXML
