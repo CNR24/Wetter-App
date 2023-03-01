@@ -3,25 +3,34 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="553.0" prefWidth="554.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.odeproject.WeatherController">
+<VBox alignment="CENTER" prefHeight="553.0" prefWidth="554.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.odeproject.WeatherController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="WeatherApp" prefHeight="70.0" prefWidth="326.0" text="            Weather Radar" textAlignment="JUSTIFY" textFill="#540de1" textOverrun="CENTER_ELLIPSIS">
+    <Label fx:id="WeatherApp" prefHeight="70.0" prefWidth="326.0" text="            Weather App" textAlignment="JUSTIFY" textFill="#540de1" textOverrun="CENTER_ELLIPSIS">
       <font>
          <Font size="24.0" />
       </font></Label>
-   <ComboBox prefWidth="150.0" promptText="Choose City" />
+   <TextField promptText="Choose City">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </TextField>
    <ButtonBar prefHeight="26.0" prefWidth="498.0">
      <buttons>
-         <Label prefHeight="18.0" prefWidth="172.0" text="Show weather for " />
+         <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <bottom>
+               <Label prefHeight="18.0" prefWidth="172.0" text="Show weather for " BorderPane.alignment="CENTER" />
+            </bottom>
+         </BorderPane>
          <Button minWidth="70.0" mnemonicParsing="false" prefHeight="26.0" text="Today" />
        <Button mnemonicParsing="false" text="2 Days" />
          <Button mnemonicParsing="false" text="3 Days" />

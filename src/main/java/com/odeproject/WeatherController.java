@@ -1,9 +1,8 @@
-package com.example.odeproject;
+package com.odeproject;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,9 +14,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WeatherController {
-     @FXML
-    private Label welcomeText;
-
     @FXML
     private ListView lv;
 
@@ -31,7 +27,7 @@ public class WeatherController {
 
             InputStream in = client.getInputStream();
             ObservableList<String> cities = FXCollections.observableArrayList();
-            byte[] bymessage = new byte[100];
+            byte[] bymessage = new byte[30];
             int bytes = in.read(bymessage);
             System.out.println("Client: received " + bytes + " Bytes from Server");
             String lmessage = new String(bymessage);

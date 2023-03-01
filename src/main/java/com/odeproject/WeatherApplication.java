@@ -1,4 +1,4 @@
-package com.example.odeproject;
+package com.odeproject;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

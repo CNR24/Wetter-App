@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lib2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../EMRE/Emre API/ttttttttttt/lib/gradle-wrapper.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EMRE/Emre API/ttttttttttt/lib/javax.json.bind-api-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../EMRE/Emre API/ttttttttttt/lib/json-20160212.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
