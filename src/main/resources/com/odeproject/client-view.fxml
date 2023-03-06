@@ -2,11 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -15,30 +13,18 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="WeatherApp" prefHeight="70.0" prefWidth="326.0" text="            Weather App" textAlignment="JUSTIFY" textFill="#540de1" textOverrun="CENTER_ELLIPSIS">
-      <font>
-         <Font size="24.0" />
-      </font></Label>
-   <TextField promptText="Choose City">
-      <font>
-         <Font size="15.0" />
-      </font>
-   </TextField>
-   <ButtonBar prefHeight="26.0" prefWidth="498.0">
-     <buttons>
-         <BorderPane prefHeight="200.0" prefWidth="200.0">
-            <bottom>
-               <Label prefHeight="18.0" prefWidth="172.0" text="Show weather for " BorderPane.alignment="CENTER" />
-            </bottom>
-         </BorderPane>
-         <Button minWidth="70.0" mnemonicParsing="false" prefHeight="26.0" text="Today" />
-       <Button mnemonicParsing="false" text="2 Days" />
-         <Button mnemonicParsing="false" text="3 Days" />
-     </buttons>
-   </ButtonBar>
+    <Label fx:id="WeatherApp" alignment="CENTER" contentDisplay="CENTER" opacity="0.94" prefHeight="70.0" prefWidth="326.0" text="Weather App" textAlignment="JUSTIFY" textFill="#0d7be0" textOverrun="CENTER_ELLIPSIS">
+        <font>
+            <Font size="24.0" />
+        </font></Label>
+    <TextField fx:id="mytextField" alignment="TOP_CENTER" blendMode="SRC_ATOP" cache="true" onAction="#onShowWeatherButtonClick" promptText="Choose City">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </TextField>
     <ListView fx:id="lv" prefHeight="346.0" prefWidth="396.0" />
     <Button onAction="#onShowWeatherButtonClick" text="Show Weather!" textAlignment="CENTER" textFill="#3127e7">
-      <font>
-         <Font size="15.0" />
-      </font></Button>
+        <font>
+            <Font size="15.0" />
+        </font></Button>
 </VBox>

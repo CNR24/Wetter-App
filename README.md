@@ -1,5 +1,6 @@
-# ODE -Projekt “Wetter App”<br>
+# Wetter App<br>
 ## Created by Caner Yildiz
+Caner Yilduz (ic20b038@technikum-wien.at)
 
 **Must Have**<br>
   • Wetterdaten werden in der GUI angezeigt.<br>
