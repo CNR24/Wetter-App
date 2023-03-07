@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.odeproject","l":"Server"},{"p":"com.odeproject","l":"WeatherApplication"},{"p":"com.odeproject","l":"WeatherController"}];updateSearchResults();
