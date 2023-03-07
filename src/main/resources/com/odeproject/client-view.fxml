@@ -22,7 +22,7 @@
             <Font size="16.0" />
         </font>
     </TextField>
-    <ListView fx:id="lv" prefHeight="346.0" prefWidth="396.0" />
+    <ListView fx:id="listView" prefHeight="346.0" prefWidth="396.0" />
     <Button onAction="#onShowWeatherButtonClick" text="Show Weather!" textAlignment="CENTER" textFill="#3127e7">
         <font>
             <Font size="15.0" />

@@ -1,11 +1,9 @@
 package com.odeproject;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
@@ -23,7 +21,7 @@ public class WeatherController {
     @FXML
     private String choosenCity;
     @FXML
-    private ListView lv;
+    private ListView listView;
     public void clientConnect(){
         try {
             client = new Socket("localhost", 4711);
@@ -53,6 +51,6 @@ public class WeatherController {
         choosenCity = mytextField.getText();
         clientConnect();
         System.out.println("Chosen City: "+choosenCity);
-        lv.getItems().add(weatherDate);
+        listView.getItems().add(weatherDate);
     }
 }

@@ -34,7 +34,7 @@ public class Server {
 
     // CONSTRUCTORS
 
-    public Server(String choosenCity) {
+    public Server(String choosenCity){
         this.chosenCity = choosenCity;
     }
 
@@ -58,7 +58,7 @@ public class Server {
     protected void CreateFile(String fileName){
         // *******************************    Create a File      ***********************************
         try {
-            File myFile = new File(fileName);
+            File myFile = new File(getClass().getResource(fileName).getPath());
             if (myFile.createNewFile()){
                 System.out.println("File created: " + myFile.getName());
             } else {
@@ -160,35 +160,29 @@ public class Server {
         setFileContent(stringBuilder.toString());
     }
     private void sendToCLient(){
-        while (true) {
-            try {
-                System.out.println("Send to Client: " + server.getLocalPort());
-                DataOutputStream output = new DataOutputStream(clientSocket.getOutputStream());
-                output.writeUTF(fileContent);
-                clientSocket.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                break;
-            }
+        try {
+            System.out.println("Send to Client: " + server.getLocalPort());
+            DataOutputStream output = new DataOutputStream(clientSocket.getOutputStream());
+            output.writeUTF(fileContent);
+            clientSocket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
     private void receiveFromClient(){
-        while (true) {
-            try {
-                System.out.println("Server: waiting for connection on Port: " + server.getLocalPort());
-                clientSocket = server.accept();
-                DataInputStream input = new DataInputStream(clientSocket.getInputStream());
-                setChosenCity(input.readUTF());
-               // clientSocket.close();
-                System.out.println("reviceFromCLient Get chosen CIty: "+getChosenCity());
-                break;
-            } catch (Exception e) {
-                e.printStackTrace();
-                break;
-            }
+        try {
+            System.out.println("Server: waiting for connection on Port: " + server.getLocalPort());
+            clientSocket = server.accept();
+            DataInputStream input = new DataInputStream(clientSocket.getInputStream());
+            setChosenCity(input.readUTF());
+            // clientSocket.close();
+            System.out.println("reviceFromCLient Get chosen CIty: "+getChosenCity());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Server Srv = new Server(4711);
         Srv.CreateFile("myWeatherData.txt");
         Srv.receiveFromClient();
