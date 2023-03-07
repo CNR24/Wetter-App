@@ -205,8 +205,7 @@ public class Server{
      *
      * @param fileName the name of the file to read
      */
-        public void ReadData(String fileName){
-        // *****************************       Reading the Weather Data      *******************************
+        public void readFile(String fileName){
         File filePath = new File(getClass().getResource(fileName).getPath());
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -262,80 +261,7 @@ public class Server{
         Srv.receiveFromClient();
         Srv.ConnectAPI();
         Srv.writeFile("myWeatherData.txt");
-        Srv.ReadData("myWeatherData.txt");
+        Srv.readFile("myWeatherData.txt");
         Srv.sendToCLient();
     }
 }
-
-/*
-        Server serverRunnable = new Server();
-        Thread serverThread = new Thread(serverRunnable);
-
-        WeatherController clientRunnable = new WeatherController();
-        Thread controllerThread = new Thread(clientRunnable);
-
-        controllerThread.start();
-        serverThread.start();
-        try {
-            serverThread.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-
-
-    @Override
-    public void run() {
-        try {
-            server = new ServerSocket(4711);
-        } catch (SocketException e) {
-            System.out.println("There is an error in Server! (Socket Exception)");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("There is an error in Server! (IOException)");
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-      protected void CreateFile(String fileName){
-        // *******************************    Create a File      ***********************************
-        try {
-            File myFile = new File(fileName);
-            if (myFile.createNewFile()){
-                System.out.println("File created: " + myFile.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred in file existing");
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-
-
-    private void Run() {
-        while (true) {
-            try {
-                System.out.println("Server: waiting for connection on Port: " + server.getLocalPort());
-                clientSocket = server.accept();
-                DataInputStream input = new DataInputStream(clientSocket.getInputStream());
-                setChosenCity(input.readUTF());
-                //System.out.println(clientSocket.getRemoteSocketAddress());
-                DataOutputStream output = new DataOutputStream(clientSocket.getOutputStream());
-                output.writeUTF(fileContent);
-                clientSocket.close();
-                System.out.println("Get chosen CIty: "+getChosenCity());
-            } catch (Exception e) {
-                e.printStackTrace();
-                break;
-            }
-        }
-    }
- */
