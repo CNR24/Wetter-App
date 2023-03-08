@@ -13,63 +13,39 @@ import java.io.FileWriter;
  */
 public class Server{
     // VARIABLES
-    /**
-     * API key for connect API
-     */
+    /** API key for connect API */
     private static final String API_KEY = "8b06e9e136094be6acd171511232702";
-    /**
-     * Socket for Server
-     */
+    /** Socket for Server */
     private static ServerSocket server;
-    /**
-     * Socket for Client
-     */
+    /** Socket for Client */
     protected static Socket clientSocket;
-    /**
-     * Message for Server
-     */
-    protected static String messageToServer;
-    /**
-     * Selected City name  from chosen City
-     */
+    /** Message for Server */
+    protected static String messageToClient;
+    /** Selected City name  from chosen City */
     public String chosenCity;
-    /**
-     * The name of location  from chosen City
-     */
+    /** The name of location  from chosen City */
     private String locationName;
-    /**
-     * Weather Condition from chosen City
-     */
+    /** Weather Condition from chosen City */
     private String weatherCondition;
-    /**
-     * The temperature from chosen City
-     */
+    /** The temperature from chosen City */
     private double temperature;
-    /**
-     * The location country from chosen City
-     */
+    /** The location country from chosen City */
     private String locationCountry;
-    /**
-     * The local time from chosen City
-     */
+    /** The local time from chosen City */
     private String localTime;
-    /**
-     * The perceived temperature from chosen City
-     */
+    /** The perceived temperature from chosen City */
     private double feelsLikeC;
-    /**
-     * The wind speed from chosen City
-     */
+    /** The wind speed from chosen City */
     private double windKph;
 
     // GETTERS AND SETTERS
     /**
      * Sets the message for Server
      *
-     * @param messageToServer keeps weather data
+     * @param messageToClient keeps weather data
      */
-    public static void setMessageToServer(String messageToServer) {
-        Server.messageToServer = messageToServer;
+    public static void setMessageToClient(String messageToClient) {
+        Server.messageToClient = messageToClient;
     }
     /**
      * Returns the message from Client.
@@ -168,56 +144,12 @@ public class Server{
                 localTime = jsonObj.getJSONObject("location").getString("localtime");
                 feelsLikeC = jsonObj.getJSONObject("current").getDouble("feelslike_c");
                 windKph = jsonObj.getJSONObject("current").getDouble("wind_kph");
-
             } else {
                 System.out.println("Error getting weather data");
             }
         }catch (IOException e){
             e.printStackTrace();
         }
-    }
-    /**
-     * Writes weather data to a file with the specified file name.
-     *
-     * @param fileName the name of the file to write the weather data to
-     * @throws IOException if an error occurs while writing the file
-     */
-    public void writeFile(String fileName){
-        try {
-            File fileName2 = new File(getClass().getResource(fileName).getPath());
-            FileWriter myWriter = new FileWriter(fileName2);
-            myWriter.write("Location: " +locationName + " - \n");
-            myWriter.write("Local Time: " + localTime + " - \n");
-            myWriter.write("Current Weather: " + weatherCondition + " - \n");
-            myWriter.write("Temperature: " + temperature + "° - \n");
-            myWriter.write("Feels like: " + feelsLikeC+ "° - \n");
-            myWriter.write("Wind: "+ windKph+ " kph - \n");
-            myWriter.write("Country: " + locationCountry + "  \n");
-            myWriter.close();
-            System.out.println("All weather data from this city: "+getChosenCity()+" successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-    /**
-     * Reads data from the file with the specified file name.
-     *
-     * @param fileName the name of the file to read
-     */
-        public void readFile(String fileName){
-        File filePath = new File(getClass().getResource(fileName).getPath());
-        StringBuilder stringBuilder = new StringBuilder();
-
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        setMessageToServer(stringBuilder.toString());
     }
     /**
      * Sends a message to the client over the network connection.
@@ -227,8 +159,8 @@ public class Server{
     private void sendToCLient(){
         try {
             DataOutputStream output = new DataOutputStream(clientSocket.getOutputStream());
-            output.writeUTF(messageToServer);
-            System.out.println("This message sent to CLient: "+ messageToServer);
+            output.writeUTF(messageToClient);
+            System.out.println("This message sent to CLient: "+ messageToClient);
             clientSocket.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -257,11 +189,33 @@ public class Server{
      * @param args the command line arguments
      */
     public static void main(String[] args){
-        Server Srv = new Server(4711);
-        Srv.receiveFromClient();
-        Srv.ConnectAPI();
-        Srv.writeFile("myWeatherData.txt");
-        Srv.readFile("myWeatherData.txt");
-        Srv.sendToCLient();
+        Server Srv = new Server(4711);                    // Server connection
+        Srv.receiveFromClient();                               // Receive the chosen city from client
+        Srv.ConnectAPI();                                      // Connect API and receive the air condition for chosen city
+
+        String stringLocationName= Srv.locationName;            //
+        String stringLocalTime = Srv.localTime;                 //
+        String stringCurrentWeather = Srv.weatherCondition;     //
+        Double doubleTemperature= Srv.temperature;              // Get the data to be written to the file from json and reconstruct it as a string
+        Double doubleFeelsLike= Srv.feelsLikeC;                 //
+        Double doubleWind = Srv.windKph;                        //
+        String stringCountry = Srv.locationCountry;             //
+
+        String fileName = "myWeatherData.txt";                  // Filename for writing in file and reading from this file
+        // data to be written to the file
+        String data = "Location: "+stringLocationName+" - Local Time: "+stringLocalTime+" - Current Weather: "+stringCurrentWeather+" - Temperature: "+doubleTemperature+" - Feels like: "+doubleFeelsLike+" - Wind: "+doubleWind+" - Country: "+stringCountry;
+        // create and start the writer thread
+        Thread writerThread = new Thread(new FileWriterThread(fileName, data));
+        writerThread.start();
+        // wait until it is done
+        try {
+            writerThread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        DataReader reader = new DataReader(fileName);           // Creates a new FileReaderThread object to read data from the file on a new thread, and starts the thread
+        String readData = reader.readDataFromFile();            // Take the information from file and make it string
+        setMessageToClient(readData);                           // Set the message to be sent to the client
+        Srv.sendToCLient();                                     // Send message to client
     }
 }

@@ -19,36 +19,30 @@ public class WeatherController {
     /**
      * The JavaFX Label object used to display weather information.
      *
-     * @FXML
      */
     @FXML
     protected Label WeatherApp;
     /**
-     * @brief WeatherApp keeps the label name of scene
+     * WeatherApp keeps the label name of scene
      *
-     * @FXML
      */
     @FXML
     private String weatherDate = "";
     /**
-     * @brief A text field for inputting data.
+     * A text field for inputting data.
      *
-     * @FXML
      */
     @FXML
     private TextField mytextField;
     /**
-     * @brief The name of the city that the user has selected.
+     *  The name of the city that the user has selected.
      *
-     * @FXML
      */
     @FXML
     private String chosenCity;
     /**
      * The JavaFX ListView component for displaying items.
      *
-     * @FXML
-     * @var listView
      */
     @FXML
     protected ListView listView;
