@@ -9,6 +9,16 @@ click on the Show Weather! button.
 **Must Have**<br>
   • Wetterdaten werden in der GUI angezeigt. -> Erledigt<br>
   • Die Wetterdaten gehen über den Server zum Client -> Erledigt<br>
+<br>*Erledigt:*
+* GUI
+* Readme
+* JavaDoc
+* Klassen
+* File IO
+* Exception Handling
+* Multithreading
+* Networking
+
 
 **Should Have**<br>
   • Mehere Städte können für die Wetterausgabe ausgewählt werden. -> Erledigt<br>

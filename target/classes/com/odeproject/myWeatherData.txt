@@ -1,7 +1,1 @@
-Location: Graz - 
-Local Time: 2023-03-08 0:05 - 
-Current Weather: Partly cloudy - 
-Temperature: 2.0° - 
-Feels like: 1.2° - 
-Wind: 6.8 kph - 
-Country: Austria  
+Location: Salzburg - Local Time: 2023-03-08 11:57 - Current Weather: Partly cloudy - Temperature: 8.0 - Feels like: 7.7 - Wind: 11.2 - Country: Austria
